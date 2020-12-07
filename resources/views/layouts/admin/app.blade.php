@@ -5,15 +5,18 @@
     </head>
     <body>
         @include('includes.admin.navbar')
-        @include('includes.admin.sidebar')
-        <main>
-            @yield('content')
-        </main>
-
+        <div class="row">
+            <div class="col-sm-2">
+                @include('includes.admin.sidebar')
+            </div>
+            <div class="col-sm-10">
+                <main >
+                    @yield('content')
+                </main>
+            </div>
+        </div>
         @include('includes.admin.footer')
         @include('includes.admin.footer_scripts')
-
-
         {{-- Success Alert --}}
         @if(session('status'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -23,7 +26,6 @@
                 </button>
             </div>
         @endif
-
         {{-- Error Alert --}}
         @if(session('error'))
             <div class="alert alert-danger alert-dismissible fade show" role="alert">

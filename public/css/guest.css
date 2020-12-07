@@ -1,0 +1,83 @@
+body{
+    font-family: arial;
+}
+
+button{
+
+    border: none;
+    outline: none;
+    padding: 10px 15px;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.container-fluid{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.container-fluid .card{
+    background: #fff;
+    display: inline-block;
+    padding: 30px;
+    width: 300px;
+    border-radius: 15px;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+}
+
+.container-fluid .card .head .likes,
+.container-fluid .card .head{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.container-fluid .card .head .likes{
+    justify-content: flex-start;
+    color: #ccc;
+}
+
+
+.container-fluid .card .head .discount button{
+    background: orangered;
+    display: inline-block;
+}
+.container-fluid .card .head .likes p{font-size: 12px;}
+.container-fluid .card .head .likes ion{
+    margin-right: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+
+.container-fluid .card .product{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 0px;
+}
+
+.container-fluid .card .text p{color: rgba(0,0,0,0.7);}
+.container-fluid .card .text h3{margin: 15px 0px; font-size: 18px;}
+.container-fluid .card .text{
+    text-align: center;
+}
+
+.container-fluid .card .footer .cart button{
+    background: transparent;
+    color: #ccc;
+}
+.container-fluid .card .footer .action button{
+    background: #00e781;
+}
+.container-fluid .card .footer{
+    display: flex;
+    justify-content: space-between;
+}
+.fa-heart{
+    color:red;
+}

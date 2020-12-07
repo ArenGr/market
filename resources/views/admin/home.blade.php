@@ -1,10 +1,5 @@
-@extends('layouts.app')
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-<style type="text/css">
-   .menu-items:hover{
-        background-color:#F8FAFC;
-   } 
-</style>
+@extends('layouts.admin_template')
+@section('content')
 <div class="container-fluid mt-5">
     <div class="row">
         <div class="adm-sidebar-wrapper col-sm-2 ml-3 shadow p-3 mb-5 bg-white rounded" style="z-index:14; font-size:15px; color:#6c757d;">
@@ -44,7 +39,13 @@
                         <p class="text-muted" id=""><i><small>e.g. product name</small></i></p>
                     </div>
                     <div class="col-sm-6 mt-1" id="">
-                        <input class="input-group" id="" type="text" name="category" placeholder="Product Category">
+                         <select class="input-group" id="category" name="category">
+                            <option value="choose" selected>Choose Category</option>
+                            <option value="fruits">Fruits</option>
+                            <option value="games">Games</option>
+                            <option value="books">Books</option>
+                            <option value="courses">Courses</option>
+                          </select>
                         <p class="text-muted" id="ls-ex-company-text-helper"><i><small>e.g. product category</small></i></p>
                     </div>
                     <div class="col-sm-6 mt-1" id="">
@@ -72,11 +73,4 @@
     </div>
 </div>
 
-
-<script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-<script type="text/javascript">
-    jQuery(".create-product-block").on("click", function(){
-        jQuery(".add-new-product").toggle();        
-    });
-
-</script>
+@stop

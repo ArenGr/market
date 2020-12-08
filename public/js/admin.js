@@ -5,6 +5,15 @@ $(document).ready(function(){
     }, 3000);
 });
 
-jQuery(".create-product-block").on("click", function(){
-    jQuery(".add-new-product").toggle();
-});
+function changeCategory(item) {
+    var dataId = $('#category').attr("data-url");
+    var name = item.value;
+    $.ajax({
+        type: 'GET',
+        url: dataId,
+        data: {'name': name},
+        success: function(data){
+            $('#id').html(data.prod);
+        }
+    });
+}

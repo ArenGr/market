@@ -74,20 +74,10 @@ class ProductController extends Controller
     {
         $name = $request->name;
         $prod = Product::where('product_category', $name)->get();
-        /* return view('guest.byCategory')->with('prod', $prod); */
-
-        $view = view("guest.home",compact('prod'))->render();
-        return response()->json(['html'=>$view]);
-
-
-        /* $returnHTML = view('guest.byCategory')->with('prod', $prod)->render(); */
-        /* return response()->json(array('success' => true, 'html'=>$returnHTML)); */
+        $view = view("admin.products",compact('prod'))->render();
+        return response()->json(['prod'=>$view]);
     }
     
-     /* public function viewUploads () { */
-     /*        $images = File::all(); */
-     /*        return view('view_uploads')->with('images', $images); */
-     /*    } */
     /**
      * Display the specified resource.
      *
@@ -96,8 +86,6 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        /* $prod = Product::all(); */
-        /* return view('guest.home')->with('prod', $prod); */
     }
 
     /**

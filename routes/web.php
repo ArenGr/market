@@ -22,7 +22,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/guest', 'Admin\ProductController@show')->name('show');
-Route::get('/guest/category', 'Admin\ProductController@getByCategory')->name('getByCategory');
 
 Route::prefix('/admin')->name('admin.')->namespace('Admin')->group(function(){
 
@@ -33,6 +32,7 @@ Route::prefix('/admin')->name('admin.')->namespace('Admin')->group(function(){
     Route::get('/delete_product/{id}','ProductController@destroy')->name('delete_product');
     Route::get('/edit_product/{id}','ProductController@edit')->name('edit_form_product');
     Route::post('/update/{id}','ProductController@update')->name('update_product');
+    Route::get('/byCategory', 'ProductController@getByCategory')->name('getByCategory');
 
     Route::namespace('Auth')->group(function(){
 

@@ -1,10 +1,9 @@
-@extends('layouts.guest_template')
+@extends('layouts.guest.default')
 @section('content')
-
 <div class="container-fluid mt-5 mb-5">
     <div>
-        <select class="input-group" id="category" name="category" onchange="changeCategory(this)">
-            <option value="choose" selected>Choose Category</option>
+        <select class="form-control" id="category" name="category" data-url="{{url('/byCategory')}}" onchange="changeCategory(this)">
+            <option value="choose" selected>Show By Category</option>
             <option value="fruits">Fruits</option>
             <option value="games">Games</option>
             <option value="books">Books</option>
@@ -13,8 +12,8 @@
     </div>
 </div>
 <div class="container-fluid mt-5 mb-5">
-    <div class="row" >
-        @forelse($prod as $item)
+    <div class="row col-sm-12">
+        @forelse($products as $product)
             <div class="col-sm-4 pt-5 pb-5 d-flex justify-content-center">
                 <div class="card">
                     <div class="head">
@@ -26,13 +25,13 @@
                         </div>
                     </div>
                     <div class="product">
-                        <img src="{{$item->product_image}}" height="190">
+                        <img src="{{$product->product_image}}" height="190">
                     </div>
                     <div class="text">
                         <div class="title">
-                            <h2>{{ $item->product_price }} <span>$</span></h2>
-                            <h3>{{ $item->product_name }}</h3>
-                            <p class="text-muted">{{ $item->product_description }}</p>
+                            <h2>{{ $product->product_price }} <span>$</span></h2>
+                            <h3>{{ $product->product_name }}</h3>
+                            <p class="text-muted">{{ $product->product_description }}</p>
                         </div>
                     </div>
                     <div class="footer">
@@ -45,9 +44,10 @@
                         </div>
                     </div>
                 </div>
+                <div id="id"> </div>
             </div>
         @empty
-            <p>No Images at the moment</p>
+            <p>No Products at the moment</p>
         @endforelse
     </div>
 </div>

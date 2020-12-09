@@ -4,8 +4,8 @@
     <div class="col-sm-4">
     </div>
     <div class="col-sm-4">
-        <select class="input-group" id="category" name="category" data-url="{{url('admin/byCategory')}}" onchange="changeCategory(this)">
-            <option value="choose" selected>Choose Category</option>
+        <select class="form-control" id="category" name="category" data-url="{{url('admin/byCategory')}}" onchange="changeCategory(this)">
+            <option value="choose" selected>Show By Category</option>
             <option value="fruits">Fruits</option>
             <option value="games">Games</option>
             <option value="books">Books</option>
@@ -17,7 +17,7 @@
     </div>
 </div>
 <div class="container-fluid mt-5 mb-5">
-    <div class="row" >
+    <div class="row col-sm-12" >
         @forelse($prod as $item)
             <div class="col-sm-4 pt-5 pb-5 d-flex justify-content-center" id="all_products">
                 <div class="card">
@@ -60,7 +60,7 @@
             </div>
 <div id="id"> </div>
         @empty
-            <p>No Images at the moment</p>
+            <p>No Products at the moment</p>
         @endforelse
     </div>
 </div>

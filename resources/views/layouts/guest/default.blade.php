@@ -8,8 +8,8 @@
         <main>
             @yield('content')
         </main>
-
         @include('includes.guest.footer')
+        @include('includes.guest.footer_scripts')
     </body>
 </html>
 

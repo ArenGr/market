@@ -23,7 +23,7 @@ Route::prefix('/')->namespace('Guest')->group(function(){
 
 Route::prefix('/admin')->name('admin.')->namespace('Admin')->group(function(){
 
-    Route::get('/dashboard','HomeController@index')->name('home');
+    Route::get('/dashboard','HomeController@index')->name('home.index');
     Route::get('/products','ProductController@index')->name('products');
     Route::get('/add_new_product','ProductController@create')->name('create_form_product');
     Route::get('/add_new_product/add_new_category/create', 'CategoryController@create')->name('create_form_category');

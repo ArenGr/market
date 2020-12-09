@@ -17,9 +17,12 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $prod = Product::all();
         $categories = Category::all();
-        return view('admin.products')->with('prod', $prod)->with('categories', $categories);
+        $products = Product::with(array('category'=>function($query){
+                $query->select('id','name');
+            }))->get();
+
+        return view('admin.products')->with('products', $products)->with('categories', $categories);
     }
 
     /**
@@ -40,31 +43,30 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    { 
-        $product = new Product();
+    {
+        $request->validate([
+            'name' => 'required|string',
+            'image' => 'required|mimes:jpg,jpeg,png|max:1014',
+            'price' => 'required|regex:/^\d+(\.\d{1,2})?$/',
+            'category' => 'required'
+        ]);
 
         if ($request->hasFile('image')) {
-            if ($request->file('image')->isValid()) {
-                $validated = $request->validate([
-                    /* 'name' => 'string|max:40', */
-                    'image' => 'mimes:jpg,jpeg,png|max:1014',
-                ]);
-                 $extension = $request->image->extension();
+                $extension = $request->image->extension();
                 $request->image->storeAs('/public', time().".".$extension);
                 $url = Storage::url(time().".".$extension);
-                $product->product_name = $request->name;
-                $product->product_description = $request->description;
-                $product->product_price = $request->price;
-                $product->product_image = $url;
-                $product->product_comment = $request->comments;
-                $product->product_category = $request->category;
-
-                $product->save();
-                return Redirect::back();
-            }
-            
         }
-        abort(500, 'Could not upload image :(');
+
+        $product = new Product();
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->price = $request->price;
+        $product->image = $url;
+        $product->comment = $request->comments;
+        $product->category_id =$request->category;
+        $product->save();
+
+        return Redirect::back();
     }
 
     /**
@@ -74,13 +76,13 @@ class ProductController extends Controller
      */
     public function getByCategory(Request $request)
     {
-        $name = $request->name;
-        $prod = Product::where('product_category', $name)->get();
-        $view = view("admin.products",compact('prod'))->render();
-        return response()->json(['prod'=>$view]);
+        $category_id = $request->category_id;
+        $prods = Product::where('category_id', $category_id)->get();
+        /* $view = view("admin.products",compact('products'))->render(); */
+        return response()->json(['products'=>$prods]);
     }
 
-    
+
     /**
      * Display the specified resource.
      *
@@ -99,8 +101,9 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $prod = Product::where('id', $id)->get();
-        return view('admin.product_edit_form')->with('prod', $prod);
+        $products = Product::where('id', $id)->get();
+        $categories = Category::all();
+        return view('admin.product_edit_form')->with('products', $products)->with('categories', $categories);
     }
 
     /**
@@ -112,33 +115,30 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $product = Product::findOrFail($id);
+        $request->validate([
+            'name' => 'required|string',
+            'image' => 'required|mimes:jpg,jpeg,png|max:1014',
+            'price' => 'required|regex:/^\d+(\.\d{1,2})?$/',
+            'category' => 'required'
+        ]);
 
         if ($request->hasFile('image')) {
-            if ($request->file('image')->isValid()) {
-                $validated = $request->validate([
-                    /* 'name' => 'string|max:40', */
-                    'image' => 'mimes:jpg,jpeg,png|max:1014',
-                ]);
-                 $extension = $request->image->extension();
-                $request->image->storeAs('/public', time().".".$extension);
-                $url = Storage::url(time().".".$extension);
-                $product->product_name = $request->name;
-                $product->product_description = $request->description;
-                $product->product_price = $request->price;
-                $product->product_image = $url;
-                $product->product_comment = $request->comments;
-                $product->product_category = $request->category;
-
-                $product->save();
-                /* return redirect()->route('products'); */
-                return redirect('/admin/products');
-                /* return Redirect::back(); */
-            }
-            
+            $extension = $request->image->extension();
+            $request->image->storeAs('/public', time().".".$extension);
+            $url = Storage::url(time().".".$extension);
         }
-        abort(500, 'Could not upload image :(');
-        
+
+        $product = Product::findOrFail($id);
+
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->price = $request->price;
+        $product->image = $url;
+        $product->comment = $request->comments;
+        $product->category_id = $request->category;
+        $product->save();
+
+        return redirect('/admin/products');
     }
 
     /**

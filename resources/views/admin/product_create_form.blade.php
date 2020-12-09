@@ -10,39 +10,46 @@
                     <div class="row">
                         <div class="col-sm-8">
                             <select class="form-control" id="category" name="category">
-                                <option value="choose" selected>Choose Category</option>
+                                <option value="" selected>-- Select a Category --</option>
                                 @forelse($categories as $category)
-                                    <option value="{{$category->name_category}}">{{$category->name_category}}</option>
+                                    <option value="{{$category->id}}">{{$category->name}}</option>
                                 @empty
                                     <p>No Category at the moment</p>
                                 @endforelse
                             </select>
+                            <div class="text-muted" id=""><i><small>If there aren't any category, please add a new.</small></i></div>
+                            @if($errors->has('category'))
+                                <div class="text-danger">{{ $errors->first('category') }}</div>
+                            @endif
                         </div>
                         <div class="col-sm-4">
                             <a href="/admin/add_new_product/add_new_category/create" class="btn btn-secondary">Add Category</a>
                         </div>
                     </div>
-                    {{-- <p class="text-muted" id="ls-ex-company-text-helper"><i><small>e.g. product category</small></i></p> --}}
                 </div>
                 <div class="col-sm-6 mt-3">
                     <input class="form-control" type="text" name="name" placeholder="Product Name">
-                    {{-- <p class="text-muted" id=""><i><small>e.g. product name</small></i></p> --}}
+                    @if($errors->has('name'))
+                        <div class="text-danger">{{ $errors->first('name') }}</div>
+                    @endif
                 </div>
                 <div class="col-sm-6 mt-3" id="">
                     <input class="form-control" id="" type="text" name="price" placeholder="Product Price">
-                    {{-- <p class="text-muted" id="ls-ex-location-text-helper"><i><small>e.g. product price</small></i></p> --}}
+                    @if($errors->has('price'))
+                        <div class="text-danger">{{ $errors->first('price') }}</div>
+                    @endif
                 </div>
                 <div class="col-sm-6 mt-3" id="">
                     <textarea class="form-control" rows="6" cols="50" type="text" name="description" style="" placeholder="Additional Description"></textarea>
-                    {{-- <p class="text-muted" id="ls-ex-end-date-text-helper"><i><small>e.g. additional description</small></i></p> --}}
                 </div>
                 <div class="col-sm-6 mt-3" id="">
                     <textarea class="form-control" rows="6" cols="50" type="text" name="comments" style="" placeholder="Comments"></textarea>
-                    {{-- <p class="text-muted" id=""><i><small>e.g. comments</small></i></p> --}}
                 </div>
                 <div class="col-sm-6 mt-3 align-items-left justify-content-left text-left" id="">
                     <input   id="" type="file" name="image" >
-                    {{-- <p class="text-muted" id="ls-ex-start-date-text-helper"><i><small>e.g. product image</small></i></p> --}}
+                    @if($errors->has('image'))
+                        <div class="text-danger">{{ $errors->first('image') }}</div>
+                    @endif
                 </div>
                 <div class="row col-sm-6 mt-5" id="">
                     <div class="col-sm-2">

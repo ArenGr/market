@@ -5,7 +5,9 @@
         {{-- </a> --}}
         <div class="row">
             <div class="col-sm-12">
-                <img src="{{asset('images/logo_market.jpg')}}" alt="" width="20%"/>
+                <a class="navbar-brand" href="{{ url('/admin/dashboard') }}">
+                    <img src="{{asset('images/logo_market.jpg')}}" alt="" width="20%"/>
+                </a>
 {{-- <link rel="stylesheet" href="{{ asset('css/admin_product_cart.css') }}"> --}}
             </div>
         </div>
@@ -24,12 +26,12 @@
         {{--                 </a> --}}
         {{--                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="adminDropdown"> --}}
         {{--                     <a href="{{route('admin.home')}}" class="dropdown-item">Dashboard</a> --}}
-        {{--                     <a class="dropdown-item" href="#" onclick="event.preventDefault();document.querySelector('#admin-logout-form').submit();"> --}}
-        {{--                         Logout --}}
-        {{--                     </a> --}}
-        {{--                     <form id="admin-logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;"> --}}
-        {{--                         @csrf --}}
-        {{--                     </form> --}}
+                            <a class="dropdown-item" href="#" onclick="event.preventDefault();document.querySelector('#admin-logout-form').submit();" style="display:none">
+                                Logout
+                            </a>
+                            <form id="admin-logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
         {{--                 </div> --}}
         {{--             </li> --}}
         {{--         @endif --}}

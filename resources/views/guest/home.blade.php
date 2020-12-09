@@ -5,7 +5,7 @@
         <select class="form-control" id="category" name="category" data-url="{{url('/byCategory')}}" onchange="changeCategory(this)">
             <option value="choose" selected>Show By Category</option>
             @forelse($categories as $category)
-                <option value="{{$category->name_category}}">{{$category->name_category}}</option>
+                <option value="{{$category->name}}">{{$category->name}}</option>
             @empty
                 <p>No Category at the moment</p>
             @endforelse
@@ -26,13 +26,13 @@
                         </div>
                     </div>
                     <div class="product">
-                        <img src="{{$product->product_image}}" height="190">
+                        <img src="{{$product->image}}" height="190">
                     </div>
                     <div class="text">
                         <div class="title">
-                            <h2>{{ $product->product_price }} <span>$</span></h2>
-                            <h3>{{ $product->product_name }}</h3>
-                            <p class="text-muted">{{ $product->product_description }}</p>
+                            <h2>{{ $product->price }} <span>$</span></h2>
+                            <h3>{{ $product->name }}</h3>
+                            <p class="text-muted">{{ $product->description }}</p>
                         </div>
                     </div>
                     <div class="footer">

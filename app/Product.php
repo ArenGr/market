@@ -15,11 +15,20 @@ class Product extends Model
      * @var array
      */
     protected $fillable = [
-        'product_name', 
-        'product_category', 
-        'product_image',
-        'product_description',
-        'product_price',
-        'product_comment'
+        'name', 
+        'category', 
+        'image',
+        'description',
+        'price',
+        'comment',
+        'category_id'
     ];
+
+     /**
+     * Get the user that owns the phone.
+     */
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

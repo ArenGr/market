@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 
 class CategoryController extends Controller
 {
@@ -37,9 +36,14 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'new_category' => 'required|string|unique:categories,name',
+        ]);
+
         $category = new Category();
-        $category->name_category = $request->new_category_name;
+        $category->name = strtolower($request->new_category);
         $category->save();
+
         return redirect('/admin/add_new_product');
     }
 

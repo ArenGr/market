@@ -26,6 +26,8 @@ Route::prefix('/admin')->name('admin.')->namespace('Admin')->group(function(){
     Route::get('/dashboard','HomeController@index')->name('home');
     Route::get('/products','ProductController@index')->name('products');
     Route::get('/add_new_product','ProductController@create')->name('create_form_product');
+    Route::get('/add_new_product/add_new_category/create', 'CategoryController@create')->name('create_form_category');
+    Route::any('/add_new_product/add_new_category/store', 'CategoryController@store')->name('store_category');
     Route::any('/store','ProductController@store')->name('store');
     Route::get('/delete_product/{id}','ProductController@destroy')->name('delete_product');
     Route::get('/edit_product/{id}','ProductController@edit')->name('edit_form_product');

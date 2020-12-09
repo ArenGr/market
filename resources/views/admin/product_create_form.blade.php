@@ -7,13 +7,21 @@
             <form action="store" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="col-sm-6 mt-3" id="">
-                    <select class="form-control" id="category" name="category">
-                        <option value="choose" selected>Choose Category</option>
-                        <option value="fruits">Fruits</option>
-                        <option value="games">Games</option>
-                        <option value="books">Books</option>
-                        <option value="courses">Courses</option>
-                    </select>
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <select class="form-control" id="category" name="category">
+                                <option value="choose" selected>Choose Category</option>
+                                @forelse($categories as $category)
+                                    <option value="{{$category->name_category}}">{{$category->name_category}}</option>
+                                @empty
+                                    <p>No Category at the moment</p>
+                                @endforelse
+                            </select>
+                        </div>
+                        <div class="col-sm-4">
+                            <a href="/admin/add_new_product/add_new_category/create" class="btn btn-secondary">Add Category</a>
+                        </div>
+                    </div>
                     {{-- <p class="text-muted" id="ls-ex-company-text-helper"><i><small>e.g. product category</small></i></p> --}}
                 </div>
                 <div class="col-sm-6 mt-3">

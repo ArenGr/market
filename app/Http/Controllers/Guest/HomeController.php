@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Guest;
 
+use App\Category;
 use App\Http\Controllers\Controller;
 use App\Product;
 use Illuminate\Http\Request;
@@ -16,7 +17,8 @@ class HomeController extends Controller
     public function index()
     {
         $products = Product::all();
-        return view('guest.home')->with('products', $products);
+        $categories = Category::all();
+        return view('guest.home')->with('products', $products)->with('categories', $categories);
     }
 
     public function getByCategory(Request $request)

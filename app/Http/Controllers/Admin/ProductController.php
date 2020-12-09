@@ -1,7 +1,7 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
 
+use App\Category;
 use App\Http\Controllers\Controller;
 use App\Product;
 use Illuminate\Http\Request;
@@ -18,7 +18,8 @@ class ProductController extends Controller
     public function index()
     {
         $prod = Product::all();
-        return view('admin.products')->with('prod', $prod);
+        $categories = Category::all();
+        return view('admin.products')->with('prod', $prod)->with('categories', $categories);
     }
 
     /**
@@ -28,7 +29,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.product_create_form');
+        $categories = Category::all();
+        return view('admin.product_create_form')->with('categories', $categories);
     }
 
     /**
@@ -77,6 +79,7 @@ class ProductController extends Controller
         $view = view("admin.products",compact('prod'))->render();
         return response()->json(['prod'=>$view]);
     }
+
     
     /**
      * Display the specified resource.

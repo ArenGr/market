@@ -6,10 +6,11 @@
     <div class="col-sm-4">
         <select class="form-control" id="category" name="category" data-url="{{url('admin/byCategory')}}" onchange="changeCategory(this)">
             <option value="choose" selected>Show By Category</option>
-            <option value="fruits">Fruits</option>
-            <option value="games">Games</option>
-            <option value="books">Books</option>
-            <option value="courses">Courses</option>
+            @forelse($categories as $category)
+                <option value="{{$category->name_category}}">{{$category->name_category}}</option>
+            @empty
+                <p>No Category at the moment</p>
+            @endforelse
         </select>
     </div>
     <div class="col-sm-4">

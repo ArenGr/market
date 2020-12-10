@@ -3,9 +3,9 @@
 <div class="container-fluid mt-5 mb-5">
     <div>
         <select class="form-control" id="category" name="category" data-url="{{url('/byCategory')}}" onchange="changeCategory(this)">
-            <option value="choose" selected>Show By Category</option>
+            <option value="all" selected>Show By Category</option>
             @forelse($categories as $category)
-                <option value="{{$category->name}}">{{$category->name}}</option>
+                <option value="{{$category->id}}">{{$category->name}}</option>
             @empty
                 <p>No Category at the moment</p>
             @endforelse
@@ -13,7 +13,7 @@
     </div>
 </div>
 <div class="container-fluid mt-5 mb-5">
-    <div class="row col-sm-12">
+    <div class="row col-sm-12" id="cards">
         @forelse($products as $product)
             <div class="col-sm-4 pt-5 pb-5 d-flex justify-content-center">
                 <div class="card">

@@ -5,7 +5,7 @@
         </div>
         <div class="col-sm-4">
             <select class="form-control" id="category" name="category" data-url="{{url('admin/byCategory')}}" onchange="changeCategory(this)">
-                <option value="choose" selected>--Show By Category--</option>
+                <option value="all" selected>--Show By Category--</option>
                 @forelse($categories as $category)
                     <option value="{{$category->id}}">{{$category->name}}</option>
                 @empty

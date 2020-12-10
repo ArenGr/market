@@ -23,9 +23,13 @@ class HomeController extends Controller
 
     public function getByCategory(Request $request)
     {
-        $name = $request->categoryName;
-        $products = Product::where('product_category', $name)->get();
-        $view = view("guest.home",compact('products'))->render();
-        return response()->json(['products'=>$view]);
+        if ($request->category_id == 'all'){
+            /* $category_id = $request->category_id; */
+            $prods = Product::all();
+            return response()->json(['products'=>$prods]);
+        }
+        $category_id = $request->category_id;
+        $prods = Product::where('category_id', $category_id)->get();
+        return response()->json(['products'=>$prods]);
     }
 }

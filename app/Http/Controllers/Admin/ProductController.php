@@ -76,9 +76,12 @@ class ProductController extends Controller
      */
     public function getByCategory(Request $request)
     {
+        if ($request->category_id == 'all'){
+            $prods = Product::all();
+            return response()->json(['products'=>$prods]);
+        }
         $category_id = $request->category_id;
         $prods = Product::where('category_id', $category_id)->get();
-        /* $view = view("admin.products",compact('products'))->render(); */
         return response()->json(['products'=>$prods]);
     }
 

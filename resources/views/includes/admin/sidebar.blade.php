@@ -83,6 +83,9 @@
                                 {{-- <li> --}}
                                 {{--     <a href="#">Orders</a> --}}
                                 {{-- </li> --}}
+                                <li>
+                                    <a href="#">Stock</a>
+                                </li>
                                 {{-- <li> --}}
                                 {{--     <a href="#">Credit cart</a> --}}
                                 {{-- </li> --}}

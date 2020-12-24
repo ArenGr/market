@@ -9,6 +9,15 @@ class LoginController extends Controller
 {
 
     /**
+     * @param $dependencies
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
+
+    /**
      * Show the login form.
      *
      * @return \Illuminate\Http\Response

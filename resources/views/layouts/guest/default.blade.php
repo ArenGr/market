@@ -5,7 +5,7 @@
     </head>
     <body>
         @include('includes.guest.navbar')
-        <main>
+        <main style="margin-top: 200px">
             @yield('content')
         </main>
         @include('includes.guest.footer')

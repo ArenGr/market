@@ -14,13 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-Auth::routes();
 
+/* Guest */
 Route::prefix('/')->namespace('Guest')->group(function(){
     Route::get('', 'HomeController@index')->name('guest.home.index');
     Route::get('byCategory', 'HomeController@getByCategory')->name('guest.home.getByCategory');
 });
 
+/* User */
+Auth::routes();
+
+/* Admin */
 Route::prefix('/admin')->name('admin.')->namespace('Admin')->group(function(){
 
     Route::get('/dashboard','HomeController@index')->name('home.index');
